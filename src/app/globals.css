@@ -1,26 +1,72 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Force dark mode to work */
+html.dark {
+  color-scheme: dark;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html.light {
+  color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Custom dark theme - pitch black */
+.dark body {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+.dark main {
+  background-color: #000000 !important;
+}
+
+.dark nav {
+  background-color: #000000 !important;
+  border-color: #333333 !important;
+}
+
+.dark .bg-gray-900 {
+  background-color: #000000 !important;
+}
+
+.dark .bg-gray-800 {
+  background-color: #111111 !important;
+}
+
+.dark .border-gray-700 {
+  border-color: #333333 !important;
+}
+
+/* White borders for portfolio images in dark mode */
+.dark .portfolio-image-card {
+  border: 2px solid #ffffff !important;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Custom font classes */
+.font-vera-bold {
+  font-family: var(--font-vera-bold), Arial, Helvetica, sans-serif;
+}
+
+.font-vcr-mono {
+  font-family: var(--font-vcr-mono), 'Courier New', monospace;
+}
+
+/* Ensure navbar stays on top */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Ensure theme toggle button is clickable */
+button[aria-label="Toggle theme"] {
+  position: relative;
+  z-index: 1001;
+  pointer-events: auto;
 }
